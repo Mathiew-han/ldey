@@ -1,0 +1,69 @@
+:root {
+  --bg: #f6f8fc;
+  --surface: rgba(255, 255, 255, 0.78);
+  --surface-strong: rgba(255, 255, 255, 0.92);
+  --text: rgba(11, 18, 32, 0.94);
+  --muted: rgba(11, 18, 32, 0.64);
+  --border: rgba(11, 18, 32, 0.12);
+  --primary: #1b6dff;
+  --shadow: 0 10px 26px rgba(16, 24, 40, 0.14);
+  --hero-overlay-1: rgba(255, 255, 255, 0.35);
+  --hero-overlay-2: rgba(246, 248, 252, 0.88);
+  --header-h: 64px;
+
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Noto Sans SC", "Microsoft YaHei", sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html[data-theme='dark'] {
+  --bg: #0b1220;
+  --surface: rgba(255, 255, 255, 0.06);
+  --surface-strong: rgba(255, 255, 255, 0.09);
+  --text: rgba(255, 255, 255, 0.92);
+  --muted: rgba(255, 255, 255, 0.68);
+  --border: rgba(255, 255, 255, 0.12);
+  --primary: #4da8ff;
+  --shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+  --hero-overlay-1: rgba(11, 18, 32, 0.35);
+  --hero-overlay-2: rgba(11, 18, 32, 0.92);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(1200px 600px at 20% -10%, rgba(27, 109, 255, 0.12), transparent 55%),
+    radial-gradient(900px 500px at 90% 10%, rgba(121, 87, 255, 0.10), transparent 55%),
+    var(--bg);
+  color: var(--text);
+}
+
+#root {
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--text);
+}
+
+button {
+  font: inherit;
+}
