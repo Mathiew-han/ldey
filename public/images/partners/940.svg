@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="180" viewBox="0 0 360 180" role="img" aria-labelledby="title desc">
+  <title id="title">联勤保障部队第九四〇医院标识</title>
+  <desc id="desc">联勤保障部队第九四〇医院合作单位展示标识</desc>
+  <rect width="360" height="180" rx="18" fill="#ffffff"/>
+  <circle cx="86" cy="88" r="42" fill="#f8fbff" stroke="#0d2b52" stroke-width="5"/>
+  <path d="M86 49l10 24 26 2-20 17 6 26-22-14-23 14 7-26-21-17 27-2z" fill="#8b1a1a" stroke="#c8a96e" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M86 71v38M67 90h38" stroke="#ffffff" stroke-width="8" stroke-linecap="round"/>
+  <text x="150" y="76" fill="#0d2b52" font-family="Microsoft YaHei, SimHei, Arial, sans-serif" font-size="24" font-weight="700">联勤保障部队</text>
+  <text x="151" y="106" fill="#8b1a1a" font-family="Microsoft YaHei, SimHei, Arial, sans-serif" font-size="22" font-weight="700">第九四〇医院</text>
+  <text x="151" y="131" fill="#6b7280" font-family="Arial, sans-serif" font-size="11" letter-spacing="1.1">NO. 940 HOSPITAL</text>
+</svg>

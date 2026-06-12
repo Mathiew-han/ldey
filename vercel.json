@@ -1,6 +1,26 @@
 {
+  "version": 2,
+  "builds": [
+    {
+      "src": "ldey/backend/app.py",
+      "use": "@vercel/python"
+    },
+    {
+      "src": "New_ldey/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
+    }
+  ],
   "routes": [
-    { "handle": "filesystem" },
-    { "src": "/(.*)", "dest": "/index.html" }
+    {
+      "src": "/api/(.*)",
+      "dest": "/ldey/backend/app.py"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/New_ldey/$1"
+    }
   ]
 }

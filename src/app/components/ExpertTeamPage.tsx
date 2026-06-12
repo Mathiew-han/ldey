@@ -1,0 +1,160 @@
+import { BookOpen, ChevronRight, GraduationCap } from "lucide-react";
+import { experts, getPreview, staff } from "../data/siteContent";
+
+export function ExpertTeamPage() {
+  const visibleExperts = experts.slice(0, 23);
+  const visibleStaff = staff.slice(0, 12);
+
+  return (
+    <div>
+      <div style={{ backgroundColor: "#0d2b52" }} className="relative overflow-hidden py-16 md:py-20">
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `
+              repeating-linear-gradient(0deg, transparent, transparent 29px, rgba(255,255,255,0.05) 30px),
+              repeating-linear-gradient(90deg, transparent, transparent 29px, rgba(255,255,255,0.05) 30px)
+            `,
+          }}
+        />
+        <div className="max-w-[1440px] mx-auto px-6 relative">
+          <nav className="flex items-center gap-2 text-xs text-white/50 mb-6">
+            <a href="/" className="hover:text-white/80">首页</a>
+            <span>/</span>
+            <span className="text-white/80">专家团队</span>
+          </nav>
+          <h1 className="text-3xl md:text-4xl font-medium text-white mb-3">专家团队</h1>
+          <p className="text-white/60 text-sm max-w-2xl leading-relaxed">
+            汇聚医学影像、信息化、临床与科研领域专家，支撑数据中心共建、质量控制、数据治理与成果转化。
+          </p>
+        </div>
+      </div>
+      <div className="h-1" style={{ backgroundColor: "#8b1a1a" }} />
+
+      <section className="bg-white border-b border-black/8 py-10">
+        <div className="max-w-[1440px] mx-auto px-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {[
+              { value: String(visibleExperts.length), unit: "位", label: "专家组成员" },
+              { value: String(staff.length), unit: "人", label: "主要工作人员" },
+              { value: "12", unit: "家", label: "省内外共建单位" },
+              { value: "32", unit: "名", label: "信息中心支撑人员" },
+            ].map((s) => (
+              <div key={s.label} className="text-center">
+                <div className="text-3xl font-medium mb-1" style={{ color: "#8b1a1a" }}>
+                  {s.value}
+                  <span className="text-base font-normal text-gray-400 ml-0.5">{s.unit}</span>
+                </div>
+                <div className="text-xs text-gray-500">{s.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section style={{ backgroundColor: "#f7f6f4" }} className="py-20">
+        <div className="max-w-[1440px] mx-auto px-6">
+          <div className="mb-10">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-1 h-5 rounded-sm" style={{ backgroundColor: "#8b1a1a" }} />
+              <span className="text-xs text-gray-500 tracking-widest uppercase">专家组成员</span>
+            </div>
+            <h2 className="text-2xl md:text-3xl font-medium" style={{ color: "#0d2b52" }}>
+              多中心专家组
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {visibleExperts.map((expert) => (
+              <div
+                key={`${expert.id}-${expert.name}`}
+                className="bg-white border border-black/8 rounded overflow-hidden hover:shadow-md transition-shadow group"
+              >
+                <div className="relative h-48 overflow-hidden" style={{ backgroundColor: expert.id % 2 ? "#8b1a1a" : "#0d2b52" }}>
+                  <img
+                    src={expert.img}
+                    alt={expert.name}
+                    className="w-full h-full object-cover object-top opacity-75 group-hover:opacity-85 transition-opacity"
+                    loading="lazy"
+                    onError={(event) => {
+                      event.currentTarget.src = "/images/center/center.png";
+                    }}
+                  />
+                  <div
+                    className="absolute inset-0"
+                    style={{ background: `linear-gradient(to bottom, transparent 35%, ${expert.id % 2 ? "#8b1a1a" : "#0d2b52"} 100%)` }}
+                  />
+                  <div className="absolute bottom-0 left-0 right-0 p-4">
+                    <div className="text-white text-base font-medium">{expert.name}</div>
+                    <div className="text-white/75 text-xs mt-0.5">{expert.title}</div>
+                  </div>
+                </div>
+
+                <div className="p-5">
+                  <div className="text-xs text-gray-500 mb-3 flex items-center gap-1.5">
+                    <GraduationCap size={12} className="shrink-0" />
+                    {expert.hospital}
+                  </div>
+                  <div className="flex flex-wrap gap-1.5 mb-4">
+                    {(expert.directions.length ? expert.directions : ["医学影像", "数据中心"]).map((direction) => (
+                      <span
+                        key={direction}
+                        className="text-xs px-2 py-0.5 rounded border"
+                        style={{ borderColor: "rgba(0,0,0,0.1)", color: "#6b6b7b" }}
+                      >
+                        {direction}
+                      </span>
+                    ))}
+                  </div>
+                  <p className="text-xs text-gray-500 leading-relaxed line-clamp-4 mb-4">
+                    {getPreview(expert.desc || expert.headline, 128)}
+                  </p>
+                  <button className="flex items-center gap-1 text-xs font-medium" style={{ color: "#8b1a1a" }}>
+                    <BookOpen size={12} />
+                    查看简介
+                    <ChevronRight size={12} />
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-white py-20 border-t border-black/8">
+        <div className="max-w-[1440px] mx-auto px-6">
+          <div className="mb-10">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-1 h-5 rounded-sm" style={{ backgroundColor: "#8b1a1a" }} />
+              <span className="text-xs text-gray-500 tracking-widest uppercase">主要工作人员</span>
+            </div>
+            <h2 className="text-2xl md:text-3xl font-medium" style={{ color: "#0d2b52" }}>
+              数据治理与运行团队
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {visibleStaff.map((person) => (
+              <div key={`${person.id}-${person.name}`} className="border border-black/8 rounded p-5 flex gap-4 bg-[#fafafa]">
+                <img
+                  src={person.img}
+                  alt={person.name}
+                  className="w-16 h-16 rounded object-cover shrink-0"
+                  loading="lazy"
+                  onError={(event) => {
+                    event.currentTarget.src = "/images/center/center.png";
+                  }}
+                />
+                <div className="min-w-0">
+                  <div className="text-sm font-medium text-gray-800">{person.name}</div>
+                  <div className="text-xs text-gray-500 mt-1 line-clamp-2">{person.headline}</div>
+                  <p className="text-xs text-gray-400 mt-2 line-clamp-2">{getPreview(person.desc, 72)}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
