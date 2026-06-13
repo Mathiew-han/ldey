@@ -130,14 +130,19 @@ const news = achievementImages
       summary: getPreview(item.nearestText, 68),
     })),
   )
-  .slice(0, 4)
-  .map((item, index) => ({ ...item, date: ["2025-11-30", "2025-03-01", "2024-12-01", "2024-11-14"][index] ?? "2025-01-01" }));
+  .map((item, exchangeIndex) => ({ ...item, exchangeIndex }))
+  .map((item, index) => ({
+    ...item,
+    date: ["2025-11-30", "2025-03-01", "2024-12-01", "2024-11-14"][index % 4],
+  }));
 
 export function HomePage() {
+  const [newsStart, setNewsStart] = useState(0);
   const { ref: heroRef, progress: heroProgress } = useHeroProgress();
   const titleReveal = smoothRange(heroProgress, 0.18, 0.48);
   const statsReveal = smoothRange(heroProgress, 0.55, 0.9);
   const statsActive = statsReveal > 0.2;
+  const visibleNews = news.map((_, index) => news[(newsStart + index) % news.length]);
 
   return (
     <div>
@@ -504,12 +509,16 @@ export function HomePage() {
           <div className="flex items-center justify-between mb-5">
             <div className="flex gap-2">
               <button
+                type="button"
+                onClick={() => setNewsStart((current) => (current - 1 + news.length) % news.length)}
                 className="w-10 h-10 rounded-full bg-white/95 border border-black/8 shadow-sm flex items-center justify-center text-[#0d2b52] hover:text-[#8b1a1a] transition-colors"
                 aria-label="上一条动态"
               >
                 <ArrowLeft size={17} />
               </button>
               <button
+                type="button"
+                onClick={() => setNewsStart((current) => (current + 1) % news.length)}
                 className="w-10 h-10 rounded-full bg-white/95 border border-black/8 shadow-sm flex items-center justify-center text-[#0d2b52] hover:text-[#8b1a1a] transition-colors"
                 aria-label="下一条动态"
               >
@@ -517,7 +526,7 @@ export function HomePage() {
               </button>
             </div>
             <Link
-              to="/research"
+              to="/research#academic-exchange"
               className="flex items-center gap-2 text-sm bg-white/95 border border-black/8 px-4 py-2 rounded-full shadow-sm hover:text-[#8b1a1a] transition-colors"
               style={{ color: "#0d2b52" }}
             >
@@ -527,10 +536,10 @@ export function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5">
-            {news.map((item) => (
+            {visibleNews.map((item) => (
               <Link
                 key={item.title}
-                to="/research"
+                to={`/research#exchange-${item.exchangeIndex}`}
                 className="group bg-white rounded overflow-hidden shadow-[0_18px_45px_rgba(13,43,82,0.16)] border border-black/8 hover:-translate-y-1 transition-all"
               >
                 <div className="relative h-44 overflow-hidden bg-[#0d2b52]">

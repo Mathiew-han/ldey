@@ -302,37 +302,36 @@ export function DiseaseDetailPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {quadrants.map((q) => {
-              const Icon = q.icon;
-              return (
-                <div
-                  key={q.layer}
-                  className="bg-white border border-black/8 rounded overflow-hidden hover:shadow-md transition-shadow"
-                >
+          <div className="bg-white border border-black/8 rounded overflow-hidden shadow-sm">
+            <div className="relative bg-white">
+              <img
+                src="/images/brand/four-layer-architecture-text.png"
+                alt="肝硬化医学影像专病库四层数据架构图，包含影像层、临床层、病理层、预后层"
+                className="w-full object-contain"
+                loading="lazy"
+              />
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-4 border-t border-black/8">
+              {quadrants.map((q, index) => {
+                const Icon = q.icon;
+                return (
                   <div
-                    className="px-6 py-4 flex items-center gap-3"
-                    style={{ backgroundColor: q.color }}
+                    key={q.layer}
+                    className={`p-5 ${index < quadrants.length - 1 ? "md:border-r border-black/8" : ""}`}
                   >
-                    <Icon size={18} className="text-white/80" />
-                    <span className="text-white font-medium text-sm">{q.layer}</span>
+                    <div className="flex items-center gap-2 mb-3">
+                      <Icon size={16} style={{ color: q.color }} />
+                      <span className="text-sm font-medium" style={{ color: "#0d2b52" }}>
+                        {q.layer}
+                      </span>
+                    </div>
+                    <p className="text-xs text-gray-500 leading-relaxed">
+                      {q.items.slice(0, 3).join("、")}
+                    </p>
                   </div>
-                  <div className="p-6">
-                    <ul className="space-y-2.5">
-                      {q.items.map((item) => (
-                        <li key={item} className="flex items-start gap-2.5 text-sm text-gray-600">
-                          <span
-                            className="mt-1.5 w-1.5 h-1.5 rounded-full shrink-0"
-                            style={{ backgroundColor: q.color }}
-                          />
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
         </div>
       </section>

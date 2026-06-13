@@ -1,7 +1,93 @@
-import { BookOpen, ChevronRight, GraduationCap } from "lucide-react";
+import { useState } from "react";
+import { BookOpen, ChevronRight, GraduationCap, X } from "lucide-react";
 import { experts, getPreview, staff } from "../data/siteContent";
 
+type TeamPerson = (typeof experts)[number];
+
+function PersonDetailModal({
+  person,
+  onClose,
+}: {
+  person: TeamPerson | null;
+  onClose: () => void;
+}) {
+  if (!person) return null;
+
+  return (
+    <div className="fixed inset-0 z-[80] bg-black/55 px-4 py-6 md:py-10 overflow-y-auto">
+      <div className="max-w-5xl mx-auto bg-white rounded shadow-2xl overflow-hidden">
+        <div className="flex items-center justify-between px-5 md:px-7 py-4 border-b border-black/8">
+          <div>
+            <div className="text-xs text-gray-500 tracking-widest uppercase">成员简介</div>
+            <div className="text-lg font-medium mt-1" style={{ color: "#0d2b52" }}>
+              {person.name}
+            </div>
+          </div>
+          <button
+            type="button"
+            onClick={onClose}
+            className="w-9 h-9 rounded-full border border-black/10 flex items-center justify-center text-gray-500 hover:text-[#8b1a1a] hover:border-[#8b1a1a]/30 transition-colors"
+            aria-label="关闭简介"
+          >
+            <X size={18} />
+          </button>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-[360px_1fr] gap-0">
+          <div className="bg-[#f7f6f4] p-6 md:p-8">
+            <div className="rounded overflow-hidden bg-white border border-black/8">
+              <img
+                src={person.img}
+                alt={person.name}
+                className="w-full max-h-[560px] object-contain object-top"
+                onError={(event) => {
+                  event.currentTarget.src = "/images/center/center.png";
+                }}
+              />
+            </div>
+          </div>
+
+          <div className="p-6 md:p-8">
+            <div className="mb-5">
+              <div className="text-2xl font-medium mb-2" style={{ color: "#0d2b52" }}>
+                {person.name}
+              </div>
+              <div className="text-sm text-gray-600 leading-relaxed">{person.headline}</div>
+              <div className="text-xs text-gray-500 mt-3 flex items-center gap-1.5">
+                <GraduationCap size={13} />
+                {person.hospital}
+              </div>
+            </div>
+
+            <div className="flex flex-wrap gap-2 mb-6">
+              {(person.directions.length ? person.directions : ["医学影像", "数据治理"]).map((direction) => (
+                <span
+                  key={direction}
+                  className="text-xs px-2.5 py-1 rounded border"
+                  style={{ borderColor: "rgba(139,26,26,0.18)", color: "#8b1a1a", backgroundColor: "#fdf8f8" }}
+                >
+                  {direction}
+                </span>
+              ))}
+            </div>
+
+            <div className="border-t border-black/8 pt-5">
+              <h3 className="text-sm font-medium mb-3" style={{ color: "#0d2b52" }}>
+                完整简介
+              </h3>
+              <p className="text-sm text-gray-600 leading-8 whitespace-pre-line">
+                {person.desc || person.headline}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function ExpertTeamPage() {
+  const [selectedPerson, setSelectedPerson] = useState<TeamPerson | null>(null);
   const visibleExperts = experts.slice(0, 23);
   const visibleStaff = staff.slice(0, 12);
 
@@ -109,7 +195,12 @@ export function ExpertTeamPage() {
                   <p className="text-xs text-gray-500 leading-relaxed line-clamp-4 mb-4">
                     {getPreview(expert.desc || expert.headline, 128)}
                   </p>
-                  <button className="flex items-center gap-1 text-xs font-medium" style={{ color: "#8b1a1a" }}>
+                  <button
+                    type="button"
+                    onClick={() => setSelectedPerson(expert)}
+                    className="flex items-center gap-1 text-xs font-medium"
+                    style={{ color: "#8b1a1a" }}
+                  >
                     <BookOpen size={12} />
                     查看简介
                     <ChevronRight size={12} />
@@ -135,11 +226,16 @@ export function ExpertTeamPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {visibleStaff.map((person) => (
-              <div key={`${person.id}-${person.name}`} className="border border-black/8 rounded p-5 flex gap-4 bg-[#fafafa]">
+              <button
+                type="button"
+                onClick={() => setSelectedPerson(person)}
+                key={`${person.id}-${person.name}`}
+                className="border border-black/8 rounded p-5 flex gap-4 bg-[#fafafa] text-left hover:bg-white hover:border-[#8b1a1a]/25 hover:shadow-sm transition-all"
+              >
                 <img
                   src={person.img}
                   alt={person.name}
-                  className="w-16 h-16 rounded object-cover shrink-0"
+                  className="w-16 h-[85px] rounded object-cover object-top shrink-0"
                   loading="lazy"
                   onError={(event) => {
                     event.currentTarget.src = "/images/center/center.png";
@@ -149,12 +245,18 @@ export function ExpertTeamPage() {
                   <div className="text-sm font-medium text-gray-800">{person.name}</div>
                   <div className="text-xs text-gray-500 mt-1 line-clamp-2">{person.headline}</div>
                   <p className="text-xs text-gray-400 mt-2 line-clamp-2">{getPreview(person.desc, 72)}</p>
+                  <div className="mt-3 flex items-center gap-1 text-xs font-medium" style={{ color: "#8b1a1a" }}>
+                    展开查看
+                    <ChevronRight size={12} />
+                  </div>
                 </div>
-              </div>
+              </button>
             ))}
           </div>
         </div>
       </section>
+
+      <PersonDetailModal person={selectedPerson} onClose={() => setSelectedPerson(null)} />
     </div>
   );
 }

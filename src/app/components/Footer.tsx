@@ -1,13 +1,38 @@
 import { Link } from "react-router";
-import { MapPin, Phone, Mail, ExternalLink } from "lucide-react";
+import { MapPin, Phone, Mail, ExternalLink, ArrowUp } from "lucide-react";
 import { partners } from "../data/siteContent";
 
 export function Footer() {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <footer style={{ backgroundColor: "#0d2b52" }} className="text-white/80">
+      <div className="relative overflow-hidden" style={{ backgroundColor: "#0d2b52" }}>
+        <div
+          role="img"
+          aria-label="甘肃省医学影像科学数据中心校园与医学影像插画"
+          className="w-full h-[260px] md:h-[360px] bg-cover bg-bottom"
+          style={{
+            backgroundImage:
+              "linear-gradient(to top, rgba(13,43,82,0.04) 0%, rgba(13,43,82,0.28) 42%, rgba(13,43,82,0.82) 76%, #0d2b52 100%), url('/images/brand/footer-campus-anime.png')",
+          }}
+        />
+        <button
+          type="button"
+          onClick={scrollToTop}
+          aria-label="返回顶部"
+          title="返回顶部"
+          className="absolute left-1/2 bottom-0 -translate-x-1/2 translate-y-1/2 w-24 h-24 md:w-32 md:h-32 rounded-full bg-white border-[10px] border-[#0d2b52] shadow-lg flex items-center justify-center text-[#0d2b52] hover:text-[#8b1a1a] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c8a96e]"
+        >
+          <ArrowUp size={34} strokeWidth={1.8} className="-translate-y-5 md:-translate-y-7" />
+        </button>
+      </div>
+
       {/* Main footer content */}
-      <div className="max-w-[1440px] mx-auto px-6 py-14">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+      <div className="max-w-[1440px] mx-auto px-6 pt-24 md:pt-28 pb-14">
+        <div className="grid grid-cols-1 md:grid-cols-[1.15fr_0.85fr_0.85fr_1fr] gap-10 items-start">
           {/* Column 1: Institution info */}
           <div className="lg:col-span-1">
             <div className="flex items-center gap-3 mb-5">
@@ -122,13 +147,15 @@ export function Footer() {
             </ul>
           </div>
         </div>
+
+        <div className="mt-12 pt-8 border-t border-white/10" />
       </div>
 
       {/* Bottom bar */}
       <div style={{ backgroundColor: "rgba(0,0,0,0.25)" }} className="border-t border-white/10">
         <div className="max-w-[1440px] mx-auto px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-3">
           <p className="text-white/40 text-xs text-center md:text-left">
-            © 2026 甘肃省医学影像科学数据中心 · 兰州大学第二医院  保留所有权利
+            © 2026 甘肃省医学影像科学数据中心 · 兰州大学第二医院 保留所有权利
           </p>
           <div className="flex items-center gap-5">
             <a href="#" className="text-white/40 text-xs hover:text-white/70 transition-colors">
@@ -136,14 +163,6 @@ export function Footer() {
             </a>
             <a href="#" className="text-white/40 text-xs hover:text-white/70 transition-colors">
               网站声明
-            </a>
-            <a
-              href="https://beian.miit.gov.cn"
-              target="_blank"
-              rel="noreferrer"
-              className="text-white/40 text-xs hover:text-white/70 transition-colors"
-            >
-              陇ICP备2025023677号
             </a>
           </div>
         </div>
