@@ -1,5 +1,6 @@
 import { Building2, Server, Database, Users, Shield, Network, CheckCircle, Monitor, FileImage } from "lucide-react";
 import { centerInfra, centerIntro, centerPlatform, centerTeam, getPreview } from "../data/siteContent";
+import { MetricValue } from "./MetricValue";
 import { PageHero } from "./PageHero";
 
 function SectionHeader({ tag, title, subtitle }: { tag: string; title: string; subtitle?: string }) {
@@ -64,7 +65,7 @@ export function DataCenterPage() {
                     style={{ backgroundColor: "#f7f6f4", borderColor: "rgba(0,0,0,0.08)" }}
                   >
                     <div className="text-2xl font-medium mb-1" style={{ color: "#8b1a1a" }}>
-                      {s.value}
+                      <MetricValue value={s.value} />
                     </div>
                     <div className="text-xs text-gray-500">{s.label}</div>
                   </div>
@@ -333,7 +334,7 @@ export function DataCenterPage() {
                     className="text-2xl font-medium mb-0.5"
                     style={{ color: item.color }}
                   >
-                    {item.count}
+                    <MetricValue value={item.count} />
                     <span className="text-xs font-normal text-gray-400 ml-0.5">{item.unit}</span>
                   </div>
                   <div className="text-xs text-gray-500">{item.field}</div>

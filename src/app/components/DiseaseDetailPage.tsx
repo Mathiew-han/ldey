@@ -1,5 +1,7 @@
 import { Users, Building2, ChevronRight, Download, Search } from "lucide-react";
 import { liverCirrhosisDetail } from "../data/siteContent";
+import { FourLayerArchitectureCanvas } from "./FourLayerArchitectureCanvas";
+import { MetricValue } from "./MetricValue";
 import { PageHero } from "./PageHero";
 
 const dataSources = [
@@ -150,7 +152,7 @@ export function DiseaseDetailPage() {
                           className="text-xl font-medium leading-none mb-1"
                           style={{ color: "#c8a96e" }}
                         >
-                          {m.value}
+                          <MetricValue value={m.value} suffixClassName="text-sm font-normal text-[#c8a96e]/80 ml-0.5" />
                         </div>
                         <div className="text-white/50 text-xs">{m.label}</div>
                       </div>
@@ -236,16 +238,7 @@ export function DiseaseDetailPage() {
             </p>
           </div>
 
-          <div className="bg-white border border-black/8 rounded overflow-hidden shadow-sm">
-            <div className="relative bg-white">
-              <img
-                src="/images/brand/four-layer-architecture-4k.png"
-                alt="肝硬化医学影像专病库四层数据架构图，包含影像层、临床层、病理层、预后层"
-                className="w-full object-contain"
-                loading="lazy"
-              />
-            </div>
-          </div>
+          <FourLayerArchitectureCanvas />
         </div>
       </section>
 

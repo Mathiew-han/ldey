@@ -15,6 +15,7 @@ import {
   ExternalLink,
 } from "lucide-react";
 import { achievementImages, centerIntro, diseases, getPreview, partners, siteStats } from "../data/siteContent";
+import { MetricValue } from "./MetricValue";
 
 function clamp(value: number, min = 0, max = 1) {
   return Math.min(max, Math.max(min, value));
@@ -313,7 +314,7 @@ export function HomePage() {
                     className="text-2xl font-medium mb-4"
                     style={{ color: db.featured ? "#8b1a1a" : "#0d2b52" }}
                   >
-                    {db.cases}
+                    <MetricValue value={db.cases} suffixClassName="text-sm font-normal text-gray-500 ml-0.5" />
                     <span className="text-sm font-normal text-gray-500 ml-1">病例</span>
                   </div>
 
@@ -347,10 +348,18 @@ export function HomePage() {
       </section>
 
       {/* Platform intro strip */}
-      <section style={{ backgroundColor: "#0d2b52" }} className="py-16">
-        <div className="max-w-[1440px] mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
+      <section style={{ backgroundColor: "#0d2b52" }} className="relative min-h-[560px] overflow-hidden py-16 md:py-20">
+        <div
+          className="absolute inset-y-0 right-0 w-full md:w-[58vw] bg-cover bg-center md:bg-right"
+          style={{
+            backgroundImage: "url('/images/brand/home-platform-bg.png')",
+            WebkitMaskImage: "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.18) 18%, #000 42%, #000 100%)",
+            maskImage: "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.18) 18%, #000 42%, #000 100%)",
+          }}
+        />
+        <div className="absolute inset-0 bg-[#0d2b52]/15 md:bg-transparent" />
+        <div className="relative max-w-[1440px] mx-auto px-6 min-h-[430px] flex items-center">
+          <div className="max-w-[670px]">
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-1 h-5 rounded-sm" style={{ backgroundColor: "#c8a96e" }} />
                 <span className="text-xs text-white/60 tracking-widest uppercase">数据中心</span>
@@ -384,26 +393,13 @@ export function HomePage() {
                 ))}
               </div>
             </div>
-            <div className="relative">
-              <img
-                src="/images/center/2.png"
-                alt="甘肃省医学影像科学数据中心"
-                className="w-full rounded object-cover"
-                style={{ height: "360px" }}
-              />
-              <div
-                className="absolute inset-0 rounded"
-                style={{ background: "linear-gradient(to right, #0d2b52 0%, transparent 30%)" }}
-              />
-              <div
-                className="absolute bottom-6 left-6 right-6 p-4 rounded border border-white/10"
-                style={{ backgroundColor: "rgba(13,43,82,0.85)" }}
-              >
-                <div className="text-white/80 text-xs mb-1">系统建设单位</div>
-                <div className="text-white text-sm font-medium">兰州大学第二医院 · 医学影像科</div>
-              </div>
+            <div
+              className="hidden md:block absolute right-8 bottom-8 w-[360px] p-4 rounded border border-white/12 shadow-[0_18px_42px_rgba(0,0,0,0.22)]"
+              style={{ backgroundColor: "rgba(13,43,82,0.76)", backdropFilter: "blur(8px)" }}
+            >
+              <div className="text-white/70 text-xs mb-1">系统建设单位</div>
+              <div className="text-white text-sm font-medium">兰州大学第二医院 · 医学影像科</div>
             </div>
-          </div>
         </div>
       </section>
 

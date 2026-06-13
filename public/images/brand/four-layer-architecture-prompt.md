@@ -1,7 +1,0 @@
-Use case: infographic-diagram
-Asset type: website architecture figure, 3840x2160 landscape
-Primary request: Redesign the cirrhosis medical imaging special-disease database four-layer data architecture as an academic professional schematic. The text must be embedded naturally inside the architecture modules, nodes, pipeline bands, data cards, DICOM thumbnails, pathology tiles, timeline chips, and central data-lake cylinder. Do not place the four layer texts as detached labels floating above boxes or as a separate high-level legend. Avoid four isolated boxes.
-Required in-image text, verbatim: 肝硬化医学影像专病库 · 四层数据架构; 多中心数据来源; 标准化采集与治理闸门; DICOM 标准接入; 脱敏匿名化; 质控与索引; 授权访问; 影像层; 增强CT; 腹部MRI; 弹性超声; 消化内镜; 临床层; 肝功能指标; 病因分型; 并发症记录; 干预治疗; 病理层; 肝纤维化分期; 病理特征; 影像征象绑定; 科研字段体系; 预后层; 随访预后; 并发症预判; 分级诊疗; 科研输出; 肝硬化专病结构化数据湖; 科研与临床支撑.
-Style/medium: Nature/Figure4papers-inspired medical imaging architecture diagram, clean white/ivory canvas, restrained Lanzhou University navy, crimson, and gold accents, precise arrows, publication-grade typography, clear Chinese labels.
-Composition/framing: left-to-right data governance pipeline with a central structured data-lake hub and four integrated multimodal layer bands around it, plus downstream research/clinical support outputs. Labels live inside their corresponding nodes.
-Constraints: text legible at 4K, no watermark, no detached top-level text list, no decorative unrelated icons, conceptual figure only.

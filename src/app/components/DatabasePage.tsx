@@ -1,6 +1,7 @@
 import { ArrowRight, Camera, Shield, Tag, CheckSquare, Share2, Server, Cpu, Database, LayoutGrid } from "lucide-react";
 import { Link } from "react-router";
 import { configText, diseases, equipmentText, getPreview, researchPlatforms, sharingPlatformText, softwareIntro } from "../data/siteContent";
+import { MetricValue } from "./MetricValue";
 import { PageHero } from "./PageHero";
 
 const processSteps = [
@@ -404,7 +405,7 @@ export function DatabasePage() {
                   className="col-span-2 text-center font-medium"
                   style={{ color: "#0d2b52" }}
                 >
-                  {db.cases}
+                  <MetricValue value={db.cases} suffixClassName="text-xs font-normal text-gray-500 ml-0.5" />
                 </div>
                 <div className="col-span-3 text-xs text-gray-500">{db.modalities}</div>
                 <div className="col-span-2 text-center">

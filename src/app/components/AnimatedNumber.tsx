@@ -47,7 +47,7 @@ export function AnimatedNumber({ value }: { value: string }) {
       ([entry]) => {
         if (entry.isIntersecting) start();
       },
-      { threshold: 0.35 },
+      { rootMargin: "420px 0px", threshold: 0.05 },
     );
 
     observer.observe(node);
