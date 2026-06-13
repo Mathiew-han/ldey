@@ -1,5 +1,6 @@
 import { Building2, Server, Database, Users, Shield, Network, CheckCircle, Monitor, FileImage } from "lucide-react";
 import { centerInfra, centerIntro, centerPlatform, centerTeam, getPreview } from "../data/siteContent";
+import { PageHero } from "./PageHero";
 
 function SectionHeader({ tag, title, subtitle }: { tag: string; title: string; subtitle?: string }) {
   return (
@@ -21,32 +22,12 @@ function SectionHeader({ tag, title, subtitle }: { tag: string; title: string; s
 export function DataCenterPage() {
   return (
     <div>
-      {/* Page header banner */}
-      <div
-        style={{ backgroundColor: "#0d2b52" }}
-        className="relative overflow-hidden py-16 md:py-20"
-      >
-        <div
-          className="absolute inset-0 opacity-20"
-          style={{
-            backgroundImage: `
-              repeating-linear-gradient(0deg, transparent, transparent 29px, rgba(255,255,255,0.05) 30px),
-              repeating-linear-gradient(90deg, transparent, transparent 29px, rgba(255,255,255,0.05) 30px)
-            `,
-          }}
-        />
-        <div className="max-w-[1440px] mx-auto px-6 relative">
-          <nav className="flex items-center gap-2 text-xs text-white/50 mb-6">
-            <a href="/" className="hover:text-white/80">首页</a>
-            <span>/</span>
-            <span className="text-white/80">数据中心</span>
-          </nav>
-          <h1 className="text-3xl md:text-4xl font-medium text-white mb-3">数据中心介绍</h1>
-          <p className="text-white/60 text-sm max-w-2xl leading-relaxed">
-            甘肃省医学影像科学数据中心依托兰州大学第二医院建立，是面向西北地区四级医疗机构的省级医学影像数据基础设施平台。
-          </p>
-        </div>
-      </div>
+      <PageHero
+        title="数据中心介绍"
+        description="甘肃省医学影像科学数据中心依托兰州大学第二医院建立，是面向西北地区四级医疗机构的省级医学影像数据基础设施平台。"
+        breadcrumbs={[{ label: "首页", to: "/" }, { label: "数据中心" }]}
+        background="/images/page-bg/data-center.png"
+      />
       <div className="h-1" style={{ backgroundColor: "#8b1a1a" }} />
 
       {/* About section */}

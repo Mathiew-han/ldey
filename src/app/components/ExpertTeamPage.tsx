@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { BookOpen, ChevronRight, GraduationCap, X } from "lucide-react";
 import { experts, getPreview, staff } from "../data/siteContent";
+import { AnimatedNumber } from "./AnimatedNumber";
+import { PageHero } from "./PageHero";
 
 type TeamPerson = (typeof experts)[number];
 
@@ -93,28 +95,12 @@ export function ExpertTeamPage() {
 
   return (
     <div>
-      <div style={{ backgroundColor: "#0d2b52" }} className="relative overflow-hidden py-16 md:py-20">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `
-              repeating-linear-gradient(0deg, transparent, transparent 29px, rgba(255,255,255,0.05) 30px),
-              repeating-linear-gradient(90deg, transparent, transparent 29px, rgba(255,255,255,0.05) 30px)
-            `,
-          }}
-        />
-        <div className="max-w-[1440px] mx-auto px-6 relative">
-          <nav className="flex items-center gap-2 text-xs text-white/50 mb-6">
-            <a href="/" className="hover:text-white/80">首页</a>
-            <span>/</span>
-            <span className="text-white/80">专家团队</span>
-          </nav>
-          <h1 className="text-3xl md:text-4xl font-medium text-white mb-3">专家团队</h1>
-          <p className="text-white/60 text-sm max-w-2xl leading-relaxed">
-            汇聚医学影像、信息化、临床与科研领域专家，支撑数据中心共建、质量控制、数据治理与成果转化。
-          </p>
-        </div>
-      </div>
+      <PageHero
+        title="专家团队"
+        description="汇聚医学影像、信息化、临床与科研领域专家，支撑数据中心共建、质量控制、数据治理与成果转化。"
+        breadcrumbs={[{ label: "首页", to: "/" }, { label: "专家团队" }]}
+        background="/images/page-bg/experts.png"
+      />
       <div className="h-1" style={{ backgroundColor: "#8b1a1a" }} />
 
       <section className="bg-white border-b border-black/8 py-10">
@@ -128,7 +114,7 @@ export function ExpertTeamPage() {
             ].map((s) => (
               <div key={s.label} className="text-center">
                 <div className="text-3xl font-medium mb-1" style={{ color: "#8b1a1a" }}>
-                  {s.value}
+                  <AnimatedNumber value={s.value} />
                   <span className="text-base font-normal text-gray-400 ml-0.5">{s.unit}</span>
                 </div>
                 <div className="text-xs text-gray-500">{s.label}</div>

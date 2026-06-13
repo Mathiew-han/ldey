@@ -1,5 +1,6 @@
 import { FileImage, Activity, Microscope, TrendingUp, Database, Users, Building2, ChevronRight, Download, Search } from "lucide-react";
 import { liverCirrhosisDetail } from "../data/siteContent";
+import { PageHero } from "./PageHero";
 
 const dataSources = [
   "兰州大学第二医院",
@@ -80,47 +81,31 @@ const quadrants = [
 export function DiseaseDetailPage() {
   return (
     <div>
-      {/* Page header */}
-      <div style={{ backgroundColor: "#0d2b52" }} className="relative overflow-hidden py-16 md:py-20">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `
-              repeating-linear-gradient(0deg, transparent, transparent 29px, rgba(255,255,255,0.05) 30px),
-              repeating-linear-gradient(90deg, transparent, transparent 29px, rgba(255,255,255,0.05) 30px)
-            `,
-          }}
-        />
-        <div className="max-w-[1440px] mx-auto px-6 relative">
-          <nav className="flex items-center gap-2 text-xs text-white/50 mb-6">
-            <a href="/" className="hover:text-white/80">首页</a>
-            <span>/</span>
-            <a href="/database" className="hover:text-white/80">专病库</a>
-            <span>/</span>
-            <span className="text-white/80">肝硬化医学影像专病库</span>
-          </nav>
-          <div className="flex items-center gap-3 mb-4">
-            <span
-              className="text-xs px-2 py-0.5 rounded font-medium"
-              style={{ backgroundColor: "#8b1a1a", color: "white" }}
-            >
-              重点专病库
-            </span>
-            <span
-              className="text-xs px-2 py-0.5 rounded"
-              style={{ backgroundColor: "rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.7)" }}
-            >
-              已开放查询与下载
-            </span>
-          </div>
-          <h1 className="text-3xl md:text-4xl font-medium text-white mb-3">
-            肝硬化医学影像专病库
-          </h1>
-          <p className="text-white/60 text-sm max-w-2xl leading-relaxed">
-            整合多模态医学影像数据、临床检验信息、病理及预后特征的结构化科研数据库
-          </p>
+      <PageHero
+        title="肝硬化医学影像专病库"
+        description="整合多模态医学影像数据、临床检验信息、病理及预后特征的结构化科研数据库"
+        breadcrumbs={[
+          { label: "首页", to: "/" },
+          { label: "专病库", to: "/database" },
+          { label: "肝硬化医学影像专病库" },
+        ]}
+        background="/images/page-bg/disease-detail.png"
+      >
+        <div className="flex items-center gap-3 mb-4">
+          <span
+            className="text-xs px-2 py-0.5 rounded font-medium"
+            style={{ backgroundColor: "#8b1a1a", color: "white" }}
+          >
+            重点专病库
+          </span>
+          <span
+            className="text-xs px-2 py-0.5 rounded"
+            style={{ backgroundColor: "rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.7)" }}
+          >
+            已开放查询与下载
+          </span>
         </div>
-      </div>
+      </PageHero>
       <div className="h-1" style={{ backgroundColor: "#8b1a1a" }} />
 
       {/* Main intro — two-column */}
@@ -305,7 +290,7 @@ export function DiseaseDetailPage() {
           <div className="bg-white border border-black/8 rounded overflow-hidden shadow-sm">
             <div className="relative bg-white">
               <img
-                src="/images/brand/four-layer-architecture-text.png"
+                src="/images/brand/four-layer-architecture-4k.png"
                 alt="肝硬化医学影像专病库四层数据架构图，包含影像层、临床层、病理层、预后层"
                 className="w-full object-contain"
                 loading="lazy"

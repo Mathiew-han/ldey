@@ -1,6 +1,7 @@
 import { ArrowRight, Camera, Shield, Tag, CheckSquare, Share2, Server, Cpu, Database, LayoutGrid } from "lucide-react";
 import { Link } from "react-router";
 import { configText, diseases, equipmentText, getPreview, researchPlatforms, sharingPlatformText, softwareIntro } from "../data/siteContent";
+import { PageHero } from "./PageHero";
 
 const processSteps = [
   {
@@ -74,29 +75,12 @@ const platformCards = [
 export function DatabasePage() {
   return (
     <div>
-      {/* Page header */}
-      <div style={{ backgroundColor: "#0d2b52" }} className="relative overflow-hidden py-16 md:py-20">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `
-              repeating-linear-gradient(0deg, transparent, transparent 29px, rgba(255,255,255,0.05) 30px),
-              repeating-linear-gradient(90deg, transparent, transparent 29px, rgba(255,255,255,0.05) 30px)
-            `,
-          }}
-        />
-        <div className="max-w-[1440px] mx-auto px-6 relative">
-          <nav className="flex items-center gap-2 text-xs text-white/50 mb-6">
-            <a href="/" className="hover:text-white/80">首页</a>
-            <span>/</span>
-            <span className="text-white/80">数据库建设</span>
-          </nav>
-          <h1 className="text-3xl md:text-4xl font-medium text-white mb-3">数据库建设</h1>
-          <p className="text-white/60 text-sm max-w-2xl leading-relaxed">
-            遵循国际医学影像标准，构建涵盖采集、治理、标注、质控、授权、共享的全流程数据建设体系。
-          </p>
-        </div>
-      </div>
+      <PageHero
+        title="数据库建设"
+        description="遵循国际医学影像标准，构建涵盖采集、治理、标注、质控、授权、共享的全流程数据建设体系。"
+        breadcrumbs={[{ label: "首页", to: "/" }, { label: "数据库建设" }]}
+        background="/images/page-bg/database.png"
+      />
       <div className="h-1" style={{ backgroundColor: "#8b1a1a" }} />
 
       {/* Process flow */}

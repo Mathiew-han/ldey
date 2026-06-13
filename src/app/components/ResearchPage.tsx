@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
 import { Award, Beaker, BookOpen, CalendarDays, Trophy, Users, X } from "lucide-react";
 import { achievementImages, achievementSections, centerTeam, getPreview } from "../data/siteContent";
+import { AnimatedNumber } from "./AnimatedNumber";
+import { PageHero } from "./PageHero";
 
 function countNumbered(lines: string[]) {
   return lines.filter((line) => /^\d+[.、]/.test(line.trim())).length;
@@ -48,28 +50,12 @@ export function ResearchPage() {
 
   return (
     <div>
-      <div style={{ backgroundColor: "#0d2b52" }} className="relative overflow-hidden py-16 md:py-20">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `
-              repeating-linear-gradient(0deg, transparent, transparent 29px, rgba(255,255,255,0.05) 30px),
-              repeating-linear-gradient(90deg, transparent, transparent 29px, rgba(255,255,255,0.05) 30px)
-            `,
-          }}
-        />
-        <div className="max-w-[1440px] mx-auto px-6 relative">
-          <nav className="flex items-center gap-2 text-xs text-white/50 mb-6">
-            <a href="/" className="hover:text-white/80">首页</a>
-            <span>/</span>
-            <span className="text-white/80">科研成果</span>
-          </nav>
-          <h1 className="text-3xl md:text-4xl font-medium text-white mb-3">科研成果</h1>
-          <p className="text-white/60 text-sm max-w-2xl leading-relaxed">
-            {getPreview(centerTeam, 150)}
-          </p>
-        </div>
-      </div>
+      <PageHero
+        title="科研成果"
+        description={getPreview(centerTeam, 150)}
+        breadcrumbs={[{ label: "首页", to: "/" }, { label: "科研成果" }]}
+        background="/images/page-bg/research.png"
+      />
       <div className="h-1" style={{ backgroundColor: "#8b1a1a" }} />
 
       <section className="bg-white border-b border-black/8 py-12">
@@ -83,7 +69,7 @@ export function ResearchPage() {
                     <Icon size={18} style={{ color: "#8b1a1a" }} />
                   </div>
                   <div className="text-3xl font-medium mb-1" style={{ color: "#8b1a1a" }}>
-                    {item.value}
+                    <AnimatedNumber value={item.value} />
                   </div>
                   <div className="text-sm text-gray-700 mb-0.5">{item.label}</div>
                   <div className="text-xs text-gray-400">{item.sub}</div>

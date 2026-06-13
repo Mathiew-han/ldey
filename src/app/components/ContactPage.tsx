@@ -1,5 +1,6 @@
 import { MapPin, Phone, Mail, Clock, ChevronDown, ChevronUp, FileText, Users } from "lucide-react";
 import { useState } from "react";
+import { PageHero } from "./PageHero";
 
 const faqs = [
   {
@@ -33,29 +34,12 @@ export function ContactPage() {
 
   return (
     <div>
-      {/* Page header */}
-      <div style={{ backgroundColor: "#0d2b52" }} className="relative overflow-hidden py-16 md:py-20">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `
-              repeating-linear-gradient(0deg, transparent, transparent 29px, rgba(255,255,255,0.05) 30px),
-              repeating-linear-gradient(90deg, transparent, transparent 29px, rgba(255,255,255,0.05) 30px)
-            `,
-          }}
-        />
-        <div className="max-w-[1440px] mx-auto px-6 relative">
-          <nav className="flex items-center gap-2 text-xs text-white/50 mb-6">
-            <a href="/" className="hover:text-white/80">首页</a>
-            <span>/</span>
-            <span className="text-white/80">联系我们</span>
-          </nav>
-          <h1 className="text-3xl md:text-4xl font-medium text-white mb-3">联系我们</h1>
-          <p className="text-white/60 text-sm max-w-2xl leading-relaxed">
-            如需申请数据访问、寻求科研合作或了解更多信息，请通过以下方式与我们联系。
-          </p>
-        </div>
-      </div>
+      <PageHero
+        title="联系我们"
+        description="如需申请数据访问、寻求科研合作或了解更多信息，请通过以下方式与我们联系。"
+        breadcrumbs={[{ label: "首页", to: "/" }, { label: "联系我们" }]}
+        background="/images/page-bg/contact.png"
+      />
       <div className="h-1" style={{ backgroundColor: "#8b1a1a" }} />
 
       {/* Main contact section */}
@@ -80,7 +64,7 @@ export function ContactPage() {
                   <div className="flex items-start gap-3">
                     <MapPin size={15} className="text-gray-400 shrink-0 mt-0.5" />
                     <p className="text-sm text-gray-600 leading-relaxed">
-                      甘肃省兰州市城关区天水南路222号<br />
+                      甘肃省兰州市城关区萃英门82号<br />
                       兰州大学第二医院<br />
                       甘肃省医学影像科学数据中心
                     </p>
@@ -306,32 +290,88 @@ export function ContactPage() {
         </div>
       </section>
 
-      {/* Map placeholder */}
+      {/* Map */}
       <section style={{ backgroundColor: "#f7f6f4" }} className="py-12 border-t border-black/8">
         <div className="max-w-[1440px] mx-auto px-6">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="w-1 h-5 rounded-sm" style={{ backgroundColor: "#8b1a1a" }} />
-            <span className="text-xs text-gray-500 tracking-widest uppercase">地图位置</span>
-          </div>
-          <div
-            className="w-full rounded border border-black/8 overflow-hidden flex items-center justify-center"
-            style={{ height: "320px", backgroundColor: "#e8edf7" }}
-          >
-            <div className="text-center">
-              <div
-                className="w-12 h-12 flex items-center justify-center rounded-full mx-auto mb-4"
-                style={{ backgroundColor: "#0d2b52" }}
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-6">
+            <div className="flex items-center gap-3">
+              <div className="w-1 h-5 rounded-sm" style={{ backgroundColor: "#8b1a1a" }} />
+              <span className="text-xs text-gray-500 tracking-widest uppercase">地图位置</span>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              <a
+                href="https://www.amap.com/place/B03A3032B3"
+                target="_blank"
+                rel="noreferrer"
+                className="text-xs px-3 py-1.5 rounded border border-black/10 bg-white hover:text-[#8b1a1a] transition-colors"
               >
-                <MapPin size={22} className="text-white" />
-              </div>
-              <div className="text-sm font-medium text-gray-700 mb-1">
-                兰州大学第二医院 — 甘肃省医学影像科学数据中心
-              </div>
-              <div className="text-xs text-gray-500">
-                甘肃省兰州市城关区天水南路222号（地图加载中…）
-              </div>
+                高德地图打开
+              </a>
+              <a
+                href="https://map.baidu.com/search/%E5%85%B0%E5%B7%9E%E5%A4%A7%E5%AD%A6%E7%AC%AC%E4%BA%8C%E5%8C%BB%E9%99%A2"
+                target="_blank"
+                rel="noreferrer"
+                className="text-xs px-3 py-1.5 rounded border border-black/10 bg-white hover:text-[#8b1a1a] transition-colors"
+              >
+                百度地图打开
+              </a>
             </div>
           </div>
+          <div
+            className="relative w-full rounded border border-black/8 overflow-hidden bg-white"
+            style={{ height: "360px" }}
+          >
+            <div
+              className="absolute inset-0"
+              style={{
+                backgroundColor: "#eaf0f7",
+                backgroundImage: `
+                  linear-gradient(90deg, rgba(13,43,82,0.06) 1px, transparent 1px),
+                  linear-gradient(rgba(13,43,82,0.06) 1px, transparent 1px),
+                  radial-gradient(circle at 48% 48%, rgba(139,26,26,0.12), transparent 24%),
+                  radial-gradient(circle at 76% 30%, rgba(13,43,82,0.10), transparent 18%)
+                `,
+                backgroundSize: "48px 48px, 48px 48px, 100% 100%, 100% 100%",
+              }}
+            />
+            <div className="absolute inset-0 opacity-80">
+              <div className="absolute left-[8%] right-[7%] top-[48%] h-3 rounded-full bg-white shadow-sm rotate-[-7deg]" />
+              <div className="absolute left-[18%] right-[18%] top-[35%] h-2 rounded-full bg-white shadow-sm rotate-[12deg]" />
+              <div className="absolute left-[36%] top-[8%] bottom-[10%] w-3 rounded-full bg-white shadow-sm rotate-[8deg]" />
+              <div className="absolute left-[10%] right-[15%] top-[62%] h-2 rounded-full bg-white shadow-sm rotate-[4deg]" />
+              <div className="absolute left-[62%] top-[14%] bottom-[22%] w-2 rounded-full bg-white shadow-sm rotate-[-16deg]" />
+            </div>
+            <div className="absolute left-[51%] top-[46%] -translate-x-1/2 -translate-y-full">
+              <div className="relative flex flex-col items-center">
+                <div
+                  className="w-14 h-14 rounded-full flex items-center justify-center shadow-lg border-4 border-white"
+                  style={{ backgroundColor: "#8b1a1a" }}
+                >
+                  <MapPin size={26} className="text-white" />
+                </div>
+                <div
+                  className="w-4 h-4 rotate-45 -mt-2 shadow-md border-r-4 border-b-4 border-white"
+                  style={{ backgroundColor: "#8b1a1a" }}
+                />
+              </div>
+            </div>
+            <div className="absolute left-6 bottom-6 max-w-md rounded border border-black/10 bg-white/95 shadow-lg p-5">
+              <div className="text-xs text-gray-500 tracking-widest uppercase mb-2">定位地址</div>
+              <div className="text-base font-medium mb-2" style={{ color: "#0d2b52" }}>
+                兰州大学第二医院本部
+              </div>
+              <p className="text-sm text-gray-600 leading-relaxed">
+                甘肃省兰州市城关区萃英门82号<br />
+                坐标：36.061106, 103.812965
+              </p>
+            </div>
+            <div className="absolute right-6 top-6 rounded border border-black/10 bg-white/90 px-3 py-2 text-xs text-gray-500">
+              西关地铁站 B 口附近
+            </div>
+          </div>
+          <p className="text-xs text-gray-500 mt-3">
+            兰州大学第二医院：甘肃省兰州市城关区萃英门82号。
+          </p>
         </div>
       </section>
 

@@ -142,7 +142,7 @@ export function HomePage() {
   const titleReveal = smoothRange(heroProgress, 0.18, 0.48);
   const statsReveal = smoothRange(heroProgress, 0.55, 0.9);
   const statsActive = statsReveal > 0.2;
-  const visibleNews = news.map((_, index) => news[(newsStart + index) % news.length]);
+  const visibleNews = Array.from({ length: Math.min(4, news.length) }, (_, index) => news[(newsStart + index) % news.length]);
 
   return (
     <div>
@@ -172,6 +172,13 @@ export function HomePage() {
               backgroundImage:
                 "linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px)",
               backgroundSize: "42px 42px",
+            }}
+          />
+          <div
+            className="absolute inset-0 pointer-events-none bg-cover bg-center"
+            style={{
+              opacity: titleReveal * 0.32,
+              backgroundImage: "url('/images/page-bg/home.png')",
             }}
           />
           <div

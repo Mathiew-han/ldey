@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import { MapPin, Phone, Mail, ExternalLink, ArrowUp } from "lucide-react";
+import { MapPin, Phone, Mail, ExternalLink } from "lucide-react";
 import { partners } from "../data/siteContent";
 
 export function Footer() {
@@ -9,14 +9,14 @@ export function Footer() {
 
   return (
     <footer style={{ backgroundColor: "#0d2b52" }} className="text-white/80">
-      <div className="relative overflow-hidden" style={{ backgroundColor: "#0d2b52" }}>
+      <div className="relative overflow-hidden bg-white">
         <div
           role="img"
           aria-label="甘肃省医学影像科学数据中心校园与医学影像插画"
           className="w-full h-[260px] md:h-[360px] bg-cover bg-bottom"
           style={{
             backgroundImage:
-              "linear-gradient(to top, rgba(13,43,82,0.04) 0%, rgba(13,43,82,0.28) 42%, rgba(13,43,82,0.82) 76%, #0d2b52 100%), url('/images/brand/footer-campus-anime.png')",
+              "linear-gradient(to top, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0.24) 42%, rgba(255,255,255,0.82) 76%, #ffffff 100%), url('/images/brand/footer-campus-anime.png')",
           }}
         />
         <button
@@ -26,7 +26,16 @@ export function Footer() {
           title="返回顶部"
           className="absolute left-1/2 bottom-0 -translate-x-1/2 translate-y-1/2 w-24 h-24 md:w-32 md:h-32 rounded-full bg-white border-[10px] border-[#0d2b52] shadow-lg flex items-center justify-center text-[#0d2b52] hover:text-[#8b1a1a] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c8a96e]"
         >
-          <ArrowUp size={34} strokeWidth={1.8} className="-translate-y-5 md:-translate-y-7" />
+          <span
+            className="-translate-y-5 md:-translate-y-7"
+            style={{
+              width: 0,
+              height: 0,
+              borderLeft: "15px solid transparent",
+              borderRight: "15px solid transparent",
+              borderBottom: "24px solid currentColor",
+            }}
+          />
         </button>
       </div>
 
@@ -57,7 +66,7 @@ export function Footer() {
               <div className="flex items-start gap-2">
                 <MapPin size={13} className="text-[#c8a96e] shrink-0 mt-0.5" />
                 <span className="text-white/60 text-xs leading-relaxed">
-                  甘肃省兰州市城关区天水南路222号<br />兰州大学第二医院
+                  甘肃省兰州市城关区萃英门82号<br />兰州大学第二医院
                 </span>
               </div>
               <div className="flex items-center gap-2">
