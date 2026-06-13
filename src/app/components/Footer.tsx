@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import { MapPin, Phone, Mail, ExternalLink } from "lucide-react";
+import { MapPin, Phone, Mail, ExternalLink, ArrowUp } from "lucide-react";
 import { partners } from "../data/siteContent";
 
 export function Footer() {
@@ -9,7 +9,7 @@ export function Footer() {
 
   return (
     <footer style={{ backgroundColor: "#0d2b52" }} className="text-white/80">
-      <div className="relative overflow-hidden bg-white">
+      <div className="relative bg-white">
         <div
           role="img"
           aria-label="甘肃省医学影像科学数据中心校园与医学影像插画"
@@ -24,18 +24,22 @@ export function Footer() {
           onClick={scrollToTop}
           aria-label="返回顶部"
           title="返回顶部"
-          className="absolute left-1/2 bottom-0 -translate-x-1/2 translate-y-1/2 w-24 h-24 md:w-32 md:h-32 rounded-full bg-white border-[10px] border-[#0d2b52] shadow-lg flex items-center justify-center text-[#0d2b52] hover:text-[#8b1a1a] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c8a96e]"
+          className="group absolute left-1/2 bottom-0 z-10 -translate-x-1/2 translate-y-[44%] w-28 h-28 md:w-40 md:h-40 rounded-full bg-white shadow-[0_18px_45px_rgba(13,43,82,0.28)] overflow-hidden flex items-start justify-center text-[#0d2b52] hover:text-[#8b1a1a] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c8a96e]"
         >
+          <span className="absolute inset-0 bg-cover bg-bottom opacity-25 transition-opacity group-hover:opacity-32"
+            style={{ backgroundImage: "url('/images/brand/footer-campus-anime.png')" }}
+          />
           <span
-            className="-translate-y-5 md:-translate-y-7"
+            className="absolute inset-0"
             style={{
-              width: 0,
-              height: 0,
-              borderLeft: "15px solid transparent",
-              borderRight: "15px solid transparent",
-              borderBottom: "24px solid currentColor",
+              background:
+                "linear-gradient(to bottom, #ffffff 0%, rgba(255,255,255,0.92) 38%, rgba(255,255,255,0.72) 100%)",
             }}
           />
+          <span className="relative mt-8 md:mt-12 flex flex-col items-center">
+            <span className="w-px h-6 md:h-8 bg-current opacity-80" />
+            <ArrowUp size={34} strokeWidth={2.1} className="-mt-3 md:-mt-4" />
+          </span>
         </button>
       </div>
 

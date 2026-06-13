@@ -1,6 +1,10 @@
-import { MapPin, Phone, Mail, Clock, ChevronDown, ChevronUp, FileText, Users } from "lucide-react";
-import { useState } from "react";
+import { MapPin, Phone, Mail, Clock, ChevronDown, ChevronUp, FileText, Users, Navigation } from "lucide-react";
+import L from "leaflet";
+import { useEffect, useRef, useState } from "react";
 import { PageHero } from "./PageHero";
+
+const hospitalCoordinates: [number, number] = [36.060741, 103.8129];
+const hospitalAddress = "甘肃省兰州市城关区萃英门82号";
 
 const faqs = [
   {
@@ -28,6 +32,99 @@ const faqs = [
     a: "当前网站展示专病库建设与数据服务信息；具体在线查询、下载和分析服务需通过数据中心授权后使用。",
   },
 ];
+
+function HospitalMap() {
+  const containerRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+
+    const map = L.map(containerRef.current, {
+      center: hospitalCoordinates,
+      zoom: 16,
+      zoomControl: false,
+      scrollWheelZoom: false,
+      attributionControl: true,
+    });
+
+    L.control.zoom({ position: "bottomright" }).addTo(map);
+
+    L.tileLayer("https://tile.openstreetmap.de/{z}/{x}/{y}.png", {
+      maxZoom: 19,
+      attribution:
+        'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors · Tiles <a href="https://tile.openstreetmap.de/">tile.openstreetmap.de</a>',
+    }).addTo(map);
+
+    const pin = L.divIcon({
+      className: "",
+      iconSize: [46, 58],
+      iconAnchor: [23, 58],
+      popupAnchor: [0, -54],
+      html: `
+        <div style="position:relative;width:46px;height:58px;">
+          <div style="position:absolute;left:4px;top:0;width:38px;height:38px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:#8b1a1a;border:4px solid #fff;box-shadow:0 12px 26px rgba(13,43,82,.26);"></div>
+          <div style="position:absolute;left:15px;top:11px;width:16px;height:16px;border-radius:999px;background:#fff;box-shadow:inset 0 0 0 3px rgba(200,169,110,.45);"></div>
+        </div>
+      `,
+    });
+
+    L.marker(hospitalCoordinates, { icon: pin })
+      .addTo(map)
+      .bindPopup(
+        `<strong>兰州大学第二医院本部</strong><br/>${hospitalAddress}<br/>甘肃省医学影像科学数据中心`,
+      );
+
+    window.setTimeout(() => map.invalidateSize(), 120);
+
+    return () => {
+      map.remove();
+    };
+  }, []);
+
+  return (
+    <div className="relative w-full rounded border border-black/8 overflow-hidden bg-white shadow-sm" style={{ height: "430px" }}>
+      <div
+        className="absolute inset-0"
+        style={{
+          backgroundColor: "#eef2f6",
+          backgroundImage: `
+            linear-gradient(28deg, transparent 0 31%, rgba(13,43,82,0.10) 31.5% 34%, transparent 34.5% 100%),
+            linear-gradient(112deg, transparent 0 40%, rgba(13,43,82,0.10) 40.5% 43%, transparent 43.5% 100%),
+            linear-gradient(160deg, transparent 0 54%, rgba(139,26,26,0.12) 54.5% 57%, transparent 57.5% 100%),
+            linear-gradient(90deg, rgba(13,43,82,0.045) 1px, transparent 1px),
+            linear-gradient(rgba(13,43,82,0.045) 1px, transparent 1px)
+          `,
+          backgroundSize: "100% 100%, 100% 100%, 100% 100%, 58px 58px, 58px 58px",
+        }}
+      />
+      <div ref={containerRef} className="absolute inset-0 z-0 hospital-leaflet-map" aria-label="兰州大学第二医院地图位置" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-20 z-[401] bg-gradient-to-b from-white/60 to-transparent" />
+      <div className="absolute left-5 bottom-5 z-[402] max-w-md rounded border border-black/10 bg-white/95 shadow-lg p-5 backdrop-blur">
+        <div className="text-xs text-gray-500 tracking-widest uppercase mb-2">定位地址</div>
+        <div className="flex items-start gap-3">
+          <div
+            className="w-9 h-9 rounded-full flex items-center justify-center shrink-0"
+            style={{ backgroundColor: "#8b1a1a" }}
+          >
+            <MapPin size={18} className="text-white" />
+          </div>
+          <div>
+            <div className="text-base font-medium mb-1" style={{ color: "#0d2b52" }}>
+              兰州大学第二医院本部
+            </div>
+            <p className="text-sm text-gray-600 leading-relaxed">
+              {hospitalAddress}<br />
+              坐标：36.060741, 103.812900
+            </p>
+          </div>
+        </div>
+      </div>
+      <div className="absolute right-5 top-5 z-[402] rounded border border-black/10 bg-white/90 px-3 py-2 text-xs text-gray-500 shadow-sm">
+        OpenStreetMap 实景瓦片
+      </div>
+    </div>
+  );
+}
 
 export function ContactPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
@@ -64,7 +161,7 @@ export function ContactPage() {
                   <div className="flex items-start gap-3">
                     <MapPin size={15} className="text-gray-400 shrink-0 mt-0.5" />
                     <p className="text-sm text-gray-600 leading-relaxed">
-                      甘肃省兰州市城关区萃英门82号<br />
+                      {hospitalAddress}<br />
                       兰州大学第二医院<br />
                       甘肃省医学影像科学数据中心
                     </p>
@@ -305,6 +402,7 @@ export function ContactPage() {
                 rel="noreferrer"
                 className="text-xs px-3 py-1.5 rounded border border-black/10 bg-white hover:text-[#8b1a1a] transition-colors"
               >
+                <Navigation size={12} className="inline mr-1 align-[-2px]" />
                 高德地图打开
               </a>
               <a
@@ -313,64 +411,14 @@ export function ContactPage() {
                 rel="noreferrer"
                 className="text-xs px-3 py-1.5 rounded border border-black/10 bg-white hover:text-[#8b1a1a] transition-colors"
               >
+                <Navigation size={12} className="inline mr-1 align-[-2px]" />
                 百度地图打开
               </a>
             </div>
           </div>
-          <div
-            className="relative w-full rounded border border-black/8 overflow-hidden bg-white"
-            style={{ height: "360px" }}
-          >
-            <div
-              className="absolute inset-0"
-              style={{
-                backgroundColor: "#eaf0f7",
-                backgroundImage: `
-                  linear-gradient(90deg, rgba(13,43,82,0.06) 1px, transparent 1px),
-                  linear-gradient(rgba(13,43,82,0.06) 1px, transparent 1px),
-                  radial-gradient(circle at 48% 48%, rgba(139,26,26,0.12), transparent 24%),
-                  radial-gradient(circle at 76% 30%, rgba(13,43,82,0.10), transparent 18%)
-                `,
-                backgroundSize: "48px 48px, 48px 48px, 100% 100%, 100% 100%",
-              }}
-            />
-            <div className="absolute inset-0 opacity-80">
-              <div className="absolute left-[8%] right-[7%] top-[48%] h-3 rounded-full bg-white shadow-sm rotate-[-7deg]" />
-              <div className="absolute left-[18%] right-[18%] top-[35%] h-2 rounded-full bg-white shadow-sm rotate-[12deg]" />
-              <div className="absolute left-[36%] top-[8%] bottom-[10%] w-3 rounded-full bg-white shadow-sm rotate-[8deg]" />
-              <div className="absolute left-[10%] right-[15%] top-[62%] h-2 rounded-full bg-white shadow-sm rotate-[4deg]" />
-              <div className="absolute left-[62%] top-[14%] bottom-[22%] w-2 rounded-full bg-white shadow-sm rotate-[-16deg]" />
-            </div>
-            <div className="absolute left-[51%] top-[46%] -translate-x-1/2 -translate-y-full">
-              <div className="relative flex flex-col items-center">
-                <div
-                  className="w-14 h-14 rounded-full flex items-center justify-center shadow-lg border-4 border-white"
-                  style={{ backgroundColor: "#8b1a1a" }}
-                >
-                  <MapPin size={26} className="text-white" />
-                </div>
-                <div
-                  className="w-4 h-4 rotate-45 -mt-2 shadow-md border-r-4 border-b-4 border-white"
-                  style={{ backgroundColor: "#8b1a1a" }}
-                />
-              </div>
-            </div>
-            <div className="absolute left-6 bottom-6 max-w-md rounded border border-black/10 bg-white/95 shadow-lg p-5">
-              <div className="text-xs text-gray-500 tracking-widest uppercase mb-2">定位地址</div>
-              <div className="text-base font-medium mb-2" style={{ color: "#0d2b52" }}>
-                兰州大学第二医院本部
-              </div>
-              <p className="text-sm text-gray-600 leading-relaxed">
-                甘肃省兰州市城关区萃英门82号<br />
-                坐标：36.061106, 103.812965
-              </p>
-            </div>
-            <div className="absolute right-6 top-6 rounded border border-black/10 bg-white/90 px-3 py-2 text-xs text-gray-500">
-              西关地铁站 B 口附近
-            </div>
-          </div>
+          <HospitalMap />
           <p className="text-xs text-gray-500 mt-3">
-            兰州大学第二医院：甘肃省兰州市城关区萃英门82号。
+            兰州大学第二医院：{hospitalAddress}。地图瓦片来自 OpenStreetMap，外部导航可使用高德或百度地图打开。
           </p>
         </div>
       </section>

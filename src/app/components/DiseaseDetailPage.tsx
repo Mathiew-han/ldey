@@ -1,4 +1,4 @@
-import { FileImage, Activity, Microscope, TrendingUp, Database, Users, Building2, ChevronRight, Download, Search } from "lucide-react";
+import { Users, Building2, ChevronRight, Download, Search } from "lucide-react";
 import { liverCirrhosisDetail } from "../data/siteContent";
 import { PageHero } from "./PageHero";
 
@@ -25,57 +25,6 @@ const clinicalFields = [
   "并发症记录",
   "干预治疗",
   "随访预后",
-];
-
-const quadrants = [
-  {
-    layer: "影像层",
-    icon: FileImage,
-    color: "#8b1a1a",
-    items: [
-      "腹部增强CT",
-      "腹部MRI",
-      "弹性超声",
-      "消化内镜",
-      "多模态影像分层体系",
-    ],
-  },
-  {
-    layer: "临床层",
-    icon: Activity,
-    color: "#0d2b52",
-    items: [
-      "肝功能指标",
-      "病因分型",
-      "并发症记录",
-      "干预治疗",
-      "结构化临床字段绑定",
-    ],
-  },
-  {
-    layer: "病理层",
-    icon: Microscope,
-    color: "#8b1a1a",
-    items: [
-      "病理特征",
-      "肝纤维化分期",
-      "临床-病理关联字段",
-      "影像征象结构化绑定",
-      "科研分析字段体系",
-    ],
-  },
-  {
-    layer: "预后层",
-    icon: TrendingUp,
-    color: "#0d2b52",
-    items: [
-      "随访预后数据",
-      "并发症预判支撑",
-      "分级诊疗研究支撑",
-      "发病机制研究支撑",
-      "线上查询与下载服务",
-    ],
-  },
 ];
 
 export function DiseaseDetailPage() {
@@ -295,27 +244,6 @@ export function DiseaseDetailPage() {
                 className="w-full object-contain"
                 loading="lazy"
               />
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-4 border-t border-black/8">
-              {quadrants.map((q, index) => {
-                const Icon = q.icon;
-                return (
-                  <div
-                    key={q.layer}
-                    className={`p-5 ${index < quadrants.length - 1 ? "md:border-r border-black/8" : ""}`}
-                  >
-                    <div className="flex items-center gap-2 mb-3">
-                      <Icon size={16} style={{ color: q.color }} />
-                      <span className="text-sm font-medium" style={{ color: "#0d2b52" }}>
-                        {q.layer}
-                      </span>
-                    </div>
-                    <p className="text-xs text-gray-500 leading-relaxed">
-                      {q.items.slice(0, 3).join("、")}
-                    </p>
-                  </div>
-                );
-              })}
             </div>
           </div>
         </div>

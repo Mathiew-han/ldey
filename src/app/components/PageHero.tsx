@@ -22,7 +22,7 @@ export function PageHero({
   return (
     <div style={{ backgroundColor: "#0d2b52" }} className="relative overflow-hidden py-16 md:py-20">
       <div
-        className="absolute inset-0 opacity-35"
+        className="absolute inset-0 opacity-20"
         style={{
           backgroundImage:
             "linear-gradient(rgba(255,255,255,0.055) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.055) 1px, transparent 1px)",
@@ -30,14 +30,14 @@ export function PageHero({
         }}
       />
       <div
-        className="absolute inset-0 opacity-45 bg-cover bg-center"
+        className="absolute inset-0 opacity-65 bg-cover bg-center"
         style={{ backgroundImage: `url('${background}')` }}
       />
       <div
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(90deg, rgba(13,43,82,0.98) 0%, rgba(13,43,82,0.82) 42%, rgba(13,43,82,0.52) 100%)",
+            "linear-gradient(90deg, rgba(13,43,82,0.98) 0%, rgba(13,43,82,0.78) 42%, rgba(13,43,82,0.38) 100%)",
         }}
       />
       <div className="max-w-[1440px] mx-auto px-6 relative">
