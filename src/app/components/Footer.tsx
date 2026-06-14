@@ -22,28 +22,30 @@ export function Footer() {
       </div>
 
       {/* Main footer content */}
-      <div className="relative bg-white overflow-hidden">
-        <svg
-          aria-hidden="true"
-          viewBox="0 0 1440 360"
-          preserveAspectRatio="none"
-          className="absolute inset-x-0 top-0 z-0 h-[280px] md:h-[360px] w-full pointer-events-none"
-        >
-          <path
-            d="M0 0H505C558 0 570 22 590 86L637 216C657 272 692 296 720 296C748 296 783 272 803 216L850 86C870 22 882 0 935 0H1440V360H0Z"
-            fill="#0d2b52"
-          />
-        </svg>
+      <div
+        className="relative overflow-visible [--footer-notch:78px] md:[--footer-notch:112px]"
+        style={{
+          backgroundImage: "url('/images/brand/footer-campus-anime.png')",
+          backgroundPosition: "center top",
+          backgroundSize: "cover",
+        }}
+      >
         <div
           aria-hidden="true"
-          className="absolute inset-x-0 top-[230px] bottom-0 z-0 bg-[#0d2b52] md:top-[300px] pointer-events-none"
+          className="absolute inset-0 z-0 bg-[#0d2b52] pointer-events-none"
+          style={{
+            WebkitMaskImage:
+              "radial-gradient(circle var(--footer-notch) at 50% 0, transparent 0 calc(var(--footer-notch) - 1px), #000 var(--footer-notch))",
+            maskImage:
+              "radial-gradient(circle var(--footer-notch) at 50% 0, transparent 0 calc(var(--footer-notch) - 1px), #000 var(--footer-notch))",
+          }}
         />
         <button
           type="button"
           onClick={scrollToTop}
           aria-label="返回顶部"
           title="返回顶部"
-          className="group absolute left-1/2 top-8 z-20 -translate-x-1/2 w-28 h-28 md:top-12 md:w-40 md:h-40 rounded-full bg-white/70 shadow-[0_18px_45px_rgba(13,43,82,0.24)] overflow-hidden flex items-start justify-center text-[#0d2b52] hover:bg-white/82 hover:text-[#8b1a1a] transition-colors backdrop-blur-[3px] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c8a96e]"
+          className="group absolute left-1/2 top-0 z-20 -translate-x-1/2 -translate-y-1/2 w-28 h-28 md:w-40 md:h-40 rounded-full bg-white/66 shadow-[0_18px_45px_rgba(13,43,82,0.24)] overflow-hidden flex items-center justify-center text-[#0d2b52] hover:bg-white/78 hover:text-[#8b1a1a] transition-colors backdrop-blur-[3px] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c8a96e]"
         >
           <span className="absolute inset-0 bg-cover bg-bottom opacity-25 transition-opacity group-hover:opacity-32"
             style={{ backgroundImage: "url('/images/brand/footer-campus-anime.png')" }}
@@ -55,14 +57,14 @@ export function Footer() {
                 "linear-gradient(to bottom, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.72) 42%, rgba(255,255,255,0.42) 100%)",
             }}
           />
-          <span className="relative mt-9 md:mt-14 flex flex-col items-center">
+          <span className="relative flex flex-col items-center">
             <span
               aria-hidden="true"
               className="block w-0 h-0 border-l-[12px] border-r-[12px] border-b-[20px] md:border-l-[17px] md:border-r-[17px] md:border-b-[28px] border-l-transparent border-r-transparent border-b-current opacity-90 drop-shadow-sm transition-transform group-hover:-translate-y-0.5"
             />
           </span>
         </button>
-        <div className="relative z-10 max-w-[1440px] mx-auto px-6 pt-[250px] md:pt-[330px] pb-14">
+        <div className="relative z-10 max-w-[1440px] mx-auto px-6 pt-36 md:pt-48 pb-14">
           <div className="grid grid-cols-1 md:grid-cols-[1.15fr_0.85fr_0.85fr_1fr] gap-10 items-start">
             {/* Column 1: Institution info */}
             <div className="lg:col-span-1">
