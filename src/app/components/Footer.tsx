@@ -13,7 +13,7 @@ export function Footer() {
         <div
           role="img"
           aria-label="甘肃省医学影像科学数据中心校园与医学影像插画"
-          className="w-full h-[260px] md:h-[360px] bg-cover bg-bottom relative z-0"
+          className="w-full h-[338px] md:h-[472px] bg-cover bg-bottom relative z-0"
           style={{
             backgroundImage:
               "linear-gradient(to top, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0.24) 42%, rgba(255,255,255,0.82) 76%, #ffffff 100%), url('/images/brand/footer-campus-anime.png')",
@@ -23,22 +23,22 @@ export function Footer() {
 
       {/* Main footer content */}
       <div
-        className="relative overflow-visible [--footer-notch:78px] md:[--footer-notch:112px]"
-        style={{
-          backgroundImage: "url('/images/brand/footer-campus-anime.png')",
-          backgroundPosition: "center top",
-          backgroundSize: "cover",
-        }}
+        className="relative -mt-[78px] overflow-visible md:-mt-[112px]"
       >
+        <svg
+          aria-hidden="true"
+          viewBox="0 0 1440 260"
+          preserveAspectRatio="none"
+          className="absolute inset-x-0 top-0 z-0 h-[210px] w-full pointer-events-none md:h-[292px]"
+        >
+          <path
+            d="M0 0H568C590 0 602 7 613 28C631 77 671 112 720 112C769 112 809 77 827 28C838 7 850 0 872 0H1440V260H0Z"
+            fill="#0d2b52"
+          />
+        </svg>
         <div
           aria-hidden="true"
-          className="absolute inset-0 z-0 bg-[#0d2b52] pointer-events-none"
-          style={{
-            WebkitMaskImage:
-              "radial-gradient(circle var(--footer-notch) at 50% 0, transparent 0 calc(var(--footer-notch) - 1px), #000 var(--footer-notch))",
-            maskImage:
-              "radial-gradient(circle var(--footer-notch) at 50% 0, transparent 0 calc(var(--footer-notch) - 1px), #000 var(--footer-notch))",
-          }}
+          className="absolute inset-x-0 top-[210px] bottom-0 z-0 bg-[#0d2b52] md:top-[292px] pointer-events-none"
         />
         <button
           type="button"
