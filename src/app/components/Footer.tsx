@@ -13,7 +13,7 @@ export function Footer() {
         <div
           role="img"
           aria-label="甘肃省医学影像科学数据中心校园与医学影像插画"
-          className="w-full h-[333px] md:h-[460px] bg-cover bg-bottom relative z-0 overflow-hidden"
+          className="w-full h-[322px] md:h-[448px] bg-cover bg-bottom relative z-0 overflow-hidden"
           style={{
             backgroundImage:
               "linear-gradient(to top, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0.24) 42%, rgba(255,255,255,0.82) 76%, #ffffff 100%), url('/images/brand/footer-campus-anime.png')",
@@ -21,7 +21,7 @@ export function Footer() {
         >
           <div
             aria-hidden="true"
-            className="absolute inset-x-0 bottom-0 h-[73px] md:h-[100px] pointer-events-none"
+            className="absolute inset-x-0 bottom-0 h-[62px] md:h-[88px] pointer-events-none"
             style={{
               background:
                 "linear-gradient(to top, rgba(13,43,82,0.96) 0%, rgba(13,43,82,0.58) 42%, rgba(13,43,82,0) 100%)",
@@ -32,22 +32,43 @@ export function Footer() {
 
       {/* Main footer content */}
       <div
-        className="relative -mt-[73px] overflow-visible md:-mt-[100px]"
+        className="relative -mt-[62px] overflow-visible [--footer-notch-half:74px] [--footer-top-shape:162px] md:-mt-[88px] md:[--footer-notch-half:104px] md:[--footer-top-shape:228px]"
       >
+        <div
+          aria-hidden="true"
+          className="absolute left-0 top-0 z-0 bg-[#0d2b52] pointer-events-none"
+          style={{
+            right: "calc(50% + var(--footer-notch-half))",
+            height: "var(--footer-top-shape)",
+          }}
+        />
+        <div
+          aria-hidden="true"
+          className="absolute right-0 top-0 z-0 bg-[#0d2b52] pointer-events-none"
+          style={{
+            left: "calc(50% + var(--footer-notch-half))",
+            height: "var(--footer-top-shape)",
+          }}
+        />
         <svg
           aria-hidden="true"
-          viewBox="0 0 1440 235"
+          viewBox="0 0 208 228"
           preserveAspectRatio="none"
-          className="absolute inset-x-0 top-0 z-0 h-[185px] w-full pointer-events-none md:h-[250px]"
+          className="absolute left-1/2 top-0 z-0 -translate-x-1/2 pointer-events-none"
+          style={{
+            width: "calc(var(--footer-notch-half) * 2)",
+            height: "var(--footer-top-shape)",
+          }}
         >
           <path
-            d="M0 0H592C611 0 622 7 632 26C649 68 682 100 720 100C758 100 791 68 808 26C818 7 829 0 848 0H1440V235H0Z"
+            d="M0 0H16C30 0 35 9 42 24C56 62 74 88 104 88C134 88 152 62 166 24C173 9 178 0 192 0H208V228H0Z"
             fill="#0d2b52"
           />
         </svg>
         <div
           aria-hidden="true"
-          className="absolute inset-x-0 top-[185px] bottom-0 z-0 bg-[#0d2b52] md:top-[250px] pointer-events-none"
+          className="absolute inset-x-0 bottom-0 z-0 bg-[#0d2b52] pointer-events-none"
+          style={{ top: "var(--footer-top-shape)" }}
         />
         <button
           type="button"
@@ -73,7 +94,7 @@ export function Footer() {
             />
           </span>
         </button>
-        <div className="relative z-10 max-w-[1440px] mx-auto px-6 pt-[136px] md:pt-[176px] pb-14">
+        <div className="relative z-10 max-w-[1440px] mx-auto px-6 pt-[124px] md:pt-[164px] pb-14">
           <div className="grid grid-cols-1 md:grid-cols-[1.15fr_0.85fr_0.85fr_1fr] gap-10 items-start">
             {/* Column 1: Institution info */}
             <div className="lg:col-span-1">
