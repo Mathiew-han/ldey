@@ -3,6 +3,7 @@ import databaseDoc from "./content/25.06.25-数据库建设介绍.doc.json";
 import expertsDoc from "./content/25.06.25-专家介绍.doc.json";
 import achievementsWord from "./content/achievements.word.json";
 import achievementsImages from "./content/achievements.images.json";
+import researchAchievementsRaw from "./content/research-achievements.json";
 
 type Block = { type: "p"; text: string } | { type: "table"; rows: string[][] };
 
@@ -34,6 +35,58 @@ export type Partner = {
   shortName: string;
   url: string;
   logo: string;
+};
+
+export type ResearchProject = {
+  category: string;
+  serial: string;
+  name: string;
+  year: string;
+  owner: string;
+  level: string;
+  code: string;
+  amountWan: number | null;
+  amountText: string;
+};
+
+export type ResearchPublication = {
+  year: string;
+  category: string;
+  serial: string;
+  firstAuthor: string;
+  correspondingAuthor: string;
+  department: string;
+  title: string;
+  journal: string;
+  citation: string;
+  doi: string;
+  impactFactor: string;
+  quartile: string;
+  note: string;
+};
+
+export type StudentCohort = {
+  cohort: string;
+  admittedTotal: number;
+  graduatedTotal: number;
+  admitted: {
+    masters: string[];
+    doctors: string[];
+  };
+  graduated: {
+    masters: string[];
+    doctors: string[];
+  };
+};
+
+export type ResearchAchievementsData = {
+  sourceFiles: string[];
+  projects: ResearchProject[];
+  projectCategories: string[];
+  publications: ResearchPublication[];
+  publicationYears: string[];
+  publicationCategories: string[];
+  students: StudentCohort[];
 };
 
 const liverCirrhosis: Disease = {
@@ -287,6 +340,7 @@ export const achievementSections = (achievementsWord as { sections: { key: strin
 export const achievementImages = (achievementsImages as {
   groups: { key: string; title: string; items: { src: string; heading: string; caption?: string; nearestText: string }[] }[];
 }).groups;
+export const researchAchievements = researchAchievementsRaw as ResearchAchievementsData;
 
 export const siteStats = [
   { value: "8000+", label: "医学影像病例" },
